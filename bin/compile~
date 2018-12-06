@@ -86,6 +86,6 @@ if [[ -e "Staticfile" && "$(grep 'pushstate: enabled' Staticfile)X" != "X" ]]; t
   touch nginx/conf/.enable_pushstate
 fi
 
-$compile_buildpack_dir/pandoc --ascii --from=markdown --to=html $build_dir/public/dist/index.md
+$compile_buildpack_dir/pandoc --ascii --from=markdown --to=html $build_dir/public/dist/index.md>$build_dir/public/index.html
 
 cp $compile_buildpack_bin/boot.sh .
