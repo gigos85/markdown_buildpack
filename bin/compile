@@ -47,7 +47,6 @@ if [ ${build_dir}/public != ${root_dir_absolute} ]; then
   mv $root_dir_absolute/!(Staticfile|Staticfile.auth|manifest.yml|stackato.yml) $tmp_dir || true
   rm -rf $build_dir/public
   mv $tmp_dir  $build_dir/public
-  $compile_buildpack_dir/pandoc --ascii --from=markdown --to=html $build_dir/public/index.md
 fi
 shopt -u extglob
 
@@ -86,5 +85,7 @@ if [[ -e "Staticfile" && "$(grep 'pushstate: enabled' Staticfile)X" != "X" ]]; t
   status "Enabling pushstate"
   touch nginx/conf/.enable_pushstate
 fi
+
+$compile_buildpack_dir/pandoc --ascii --from=markdown --to=html $build_dir/public/index.md
 
 cp $compile_buildpack_bin/boot.sh .
